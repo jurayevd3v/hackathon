@@ -9,12 +9,9 @@ import { resolve } from 'path';
 import { FilesModule } from './common/files/files.module';
 
 import { User } from './user/models/user.model';
-import { HeaderModule } from './header/header.module';
-import { Header } from './header/models/header.model';
+
 import { CarsModule } from './cars/car.module';
 import { Car } from './cars/models/car.model';
-import { ProductsModule } from './products/products.module';
-import { Product } from './products/models/product.model';
 
 @Module({
   imports: [
@@ -26,7 +23,7 @@ import { Product } from './products/models/product.model';
       username: process.env.POSTGRES_USER,
       password: String(process.env.POSTGRES_PASS),
       database: process.env.POSTGRES_DB,
-      models: [User, Header, Car, Product],
+      models: [User, Car],
       autoLoadModels: true,
       logging: false,
     }),
@@ -38,9 +35,7 @@ import { Product } from './products/models/product.model';
     JwtModule,
     AuthModule,
     UserModule,
-    HeaderModule,
     CarsModule,
-    ProductsModule,
   ],
   controllers: [],
   providers: [],
