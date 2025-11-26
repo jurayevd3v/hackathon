@@ -1,0 +1,28 @@
+version: '3.9'
+
+services:
+  coffee_postgres:
+    image: postgres:16
+    container_name: coffee_postgres_db
+    restart: always
+    env_file:
+      - .env
+    ports:
+      - "5432:5432"
+    volumes:
+      - coffee_pg_data:/var/lib/postgresql/data
+
+  coffee:
+    build: .
+    container_name: coffee
+    restart: always
+    depends_on:
+      - coffee_postgres
+    env_file:
+      - .env
+    ports:
+      - "${API_PORT}:3000"
+    command: sh -c "wait-port ${DB_HOST}:${DB_PORT} && npm run start:prod"
+
+volumes:
+  coffee_pg_data:
