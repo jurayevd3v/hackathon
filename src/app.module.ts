@@ -7,11 +7,9 @@ import { UserModule } from './user/user.module';
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { resolve } from 'path';
 import { FilesModule } from './common/files/files.module';
-
 import { User } from './user/models/user.model';
-
-import { CarsModule } from './cars/car.module';
-import { Car } from './cars/models/car.model';
+import { AccidentModule } from './accident/accident.module';
+import { Accident } from './accident/models/accident.model';
 
 @Module({
   imports: [
@@ -23,7 +21,7 @@ import { Car } from './cars/models/car.model';
       username: process.env.DB_USER,
       password: String(process.env.DB_PASSWORD),
       database: process.env.DB_NAME,
-      models: [User, Car],
+      models: [User, Accident],
       autoLoadModels: true,
       logging: false,
     }),
@@ -35,7 +33,7 @@ import { Car } from './cars/models/car.model';
     JwtModule,
     AuthModule,
     UserModule,
-    CarsModule,
+    AccidentModule,
   ],
   controllers: [],
   providers: [],

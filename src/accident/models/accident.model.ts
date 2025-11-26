@@ -1,14 +1,13 @@
 import { Column, DataType, Model, Table } from 'sequelize-typescript';
-interface CarAttr {
-  key: string;
-  title?: string | null;
+interface AccidentAttr {
+  address: string;
+  status: string;
   note?: string | null;
-  imageOne?: string | null;
-  imageTwo?: string | null;
+  image?: string | null;
 }
 
-@Table({ tableName: 'cars' })
-export class Car extends Model<Car, CarAttr> {
+@Table({ tableName: 'accident' })
+export class Accident extends Model<Accident, AccidentAttr> {
   @Column({
     type: DataType.UUID,
     primaryKey: true,
@@ -18,15 +17,15 @@ export class Car extends Model<Car, CarAttr> {
 
   @Column({
     type: DataType.STRING,
-    allowNull: true,
+    allowNull: false,
   })
-  key: string;
+  address: string;
 
   @Column({
     type: DataType.STRING,
-    allowNull: true,
+    allowNull: false,
   })
-  title?: string | null;
+  status: string;
 
   @Column({
     type: DataType.TEXT,
@@ -38,11 +37,5 @@ export class Car extends Model<Car, CarAttr> {
     type: DataType.STRING,
     allowNull: true,
   })
-  imageOne?: string | null;
-
-  @Column({
-    type: DataType.STRING,
-    allowNull: true,
-  })
-  imageTwo?: string | null;
+  image?: string | null;
 }
