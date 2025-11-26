@@ -6,12 +6,13 @@ RUN npm install
 COPY . .
 RUN npm run build
 
-# 2. Production image
+# 2. Production image 
 FROM node:20-alpine
 WORKDIR /app
 COPY --from=builder /app/dist ./dist
 COPY package*.json ./
 RUN npm install --only=production
-RUN npm install -g wait-port    
-EXPOSE 3000
-CMD ["node", "dist/main.js"]   
+# wait-port ni global o'rnatish
+RUN npm install -g wait-port
+EXPOSE 6000
+CMD ["node", "dist/main.js"]

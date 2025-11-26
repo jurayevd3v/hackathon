@@ -1,28 +1,42 @@
-version: '3.9'
+version: "3.9"
 
 services:
-  coffee_postgres:
+  hackathon_postgres:
     image: postgres:16
-    container_name: coffee_postgres_db
+    container_name: hackathon_postgres_db
     restart: always
     env_file:
       - .env
+    environment:
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_DB: ${DB_NAME}
     ports:
-      - "5432:5432"
+      - "5435:5432"
     volumes:
-      - coffee_pg_data:/var/lib/postgresql/data
+      - hackathon_pg_data:/var/lib/postgresql/data
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "500m"
+        max-file: "3"
 
-  coffee:
+  hackathon:
     build: .
-    container_name: coffee
+    container_name: hackathon
     restart: always
     depends_on:
-      - coffee_postgres
+      - hackathon_postgres
     env_file:
       - .env
     ports:
-      - "${API_PORT}:3000"
+      - "${API_PORT}:6000"
     command: sh -c "wait-port ${DB_HOST}:${DB_PORT} && npm run start:prod"
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "500m"
+        max-file: "3"
 
 volumes:
-  coffee_pg_data:
+  hackathon_pg_data:
