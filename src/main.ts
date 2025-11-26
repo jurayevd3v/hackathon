@@ -49,7 +49,7 @@ async function bootstrap() {
     .setTitle('Hackathon')
     .setDescription('API docs. Developer: Dev')
     .setVersion('1.0.0')
-    .addServer('https://dev.ithubs.uz/coffee', 'Production server')
+    .addServer('https://dev.ithubs.uz/hackathon', 'Production server')
     .addServer('http://localhost:6000', 'Local server')
     .addBearerAuth()
     .build();
