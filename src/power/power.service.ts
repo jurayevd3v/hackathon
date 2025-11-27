@@ -27,6 +27,9 @@ export class PowerService {
         });
 
         if (dispatcher) {
+          console.log(
+            `socket yuborildi - Dispatcher ID ${dispatcher.id} | Power ID ${power.id}`,
+          );
           this.powerGateway.broadcastUpdate(dispatcher.id, power.id);
         }
 

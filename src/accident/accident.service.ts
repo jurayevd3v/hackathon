@@ -31,6 +31,9 @@ export class AccidentService {
         });
 
         if (dispatcher) {
+          console.log(
+            `socket yuborildi - Dispatcher ID ${dispatcher.id} | Accident ID ${accident.id}`,
+          );
           this.accidentGateway.broadcastUpdate(dispatcher.id, accident.id);
         }
 

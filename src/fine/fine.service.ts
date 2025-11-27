@@ -53,6 +53,9 @@ export class FineService {
         });
 
         if (dispatcher) {
+          console.log(
+            `socket yuborildi - Dispatcher ID ${dispatcher.id} | Fine ID ${fine.id}`,
+          );
           this.fineGateway.broadcastUpdate(dispatcher.id, fine.id);
         }
 
