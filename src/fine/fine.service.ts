@@ -3,7 +3,7 @@ import { CreateFineDto } from './dto/create-fine.dto';
 import { InjectModel } from '@nestjs/sequelize';
 import { Fine } from './models/fine.model';
 import { User } from '../user/models/user.model';
-import { FineGateway } from './power.gateway';
+import { FineGateway } from './fine.gateway';
 
 @Injectable()
 export class FineService {
@@ -16,11 +16,7 @@ export class FineService {
   async create(dto: CreateFineDto) {
     try {
       if (dto.status) {
-        const addresses = [
-          'Guliston shahar',
-          'Guliston tuman',
-          'Yangiyer shahar',
-        ];
+        const addresses = ['Guliston shahar'];
         const address = addresses[Math.floor(Math.random() * addresses.length)];
 
         const names = [
@@ -32,7 +28,7 @@ export class FineService {
         ];
         const name = names[Math.floor(Math.random() * names.length)];
 
-        const regions = ['20', '20', '20'];
+        const regions = ['20'];
         const region = regions[Math.floor(Math.random() * regions.length)];
         const carNumber = `${region}A${Math.floor(1000 + Math.random() * 9000)}AA`;
 
