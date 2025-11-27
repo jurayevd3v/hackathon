@@ -10,6 +10,9 @@ import { FilesModule } from './common/files/files.module';
 import { User } from './user/models/user.model';
 import { AccidentModule } from './accident/accident.module';
 import { Accident } from './accident/models/accident.model';
+import { FineModule } from './fine/fine.module';
+import { PowerModule } from './power/power.module';
+import { Power } from './power/models/power.model';
 
 @Module({
   imports: [
@@ -21,7 +24,7 @@ import { Accident } from './accident/models/accident.model';
       username: process.env.DB_USER,
       password: String(process.env.DB_PASSWORD),
       database: process.env.DB_NAME,
-      models: [User, Accident],
+      models: [User, Accident, Power],
       autoLoadModels: true,
       logging: false,
     }),
@@ -34,6 +37,8 @@ import { Accident } from './accident/models/accident.model';
     AuthModule,
     UserModule,
     AccidentModule,
+    FineModule,
+    PowerModule,
   ],
   controllers: [],
   providers: [],

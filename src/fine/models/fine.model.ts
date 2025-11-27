@@ -1,12 +1,14 @@
 import { Column, DataType, Model, Table } from 'sequelize-typescript';
-interface AccidentAttr {
+
+interface FineAttr {
   address: string;
-  status: string;
+  name: string;
+  carNumber: string;
   note?: string | null;
 }
 
-@Table({ tableName: 'accident' })
-export class Accident extends Model<Accident, AccidentAttr> {
+@Table({ tableName: 'fine' })
+export class Fine extends Model<Fine, FineAttr> {
   @Column({
     type: DataType.UUID,
     primaryKey: true,
@@ -24,7 +26,13 @@ export class Accident extends Model<Accident, AccidentAttr> {
     type: DataType.STRING,
     allowNull: false,
   })
-  status: string;
+  name: string;
+
+  @Column({
+    type: DataType.STRING,
+    allowNull: false,
+  })
+  carNumber: string;
 
   @Column({
     type: DataType.TEXT,

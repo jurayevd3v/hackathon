@@ -1,12 +1,12 @@
 import { Column, DataType, Model, Table } from 'sequelize-typescript';
-interface AccidentAttr {
+interface PowerAttr {
   address: string;
-  status: string;
+  powerTime: string;
   note?: string | null;
 }
 
-@Table({ tableName: 'accident' })
-export class Accident extends Model<Accident, AccidentAttr> {
+@Table({ tableName: 'power' })
+export class Power extends Model<Power, PowerAttr> {
   @Column({
     type: DataType.UUID,
     primaryKey: true,
@@ -24,7 +24,7 @@ export class Accident extends Model<Accident, AccidentAttr> {
     type: DataType.STRING,
     allowNull: false,
   })
-  status: string;
+  powerTime: string;
 
   @Column({
     type: DataType.TEXT,
